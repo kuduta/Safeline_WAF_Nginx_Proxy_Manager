@@ -1,0 +1,11 @@
+# Use after base + Desktop + syslog files. Do not use on Linux without Desktop.
+services:
+  waf-upstream-relay:
+    logging:
+      driver: syslog
+      options: !override
+        syslog-address: ${SYSLOG_ADDRESS:?SYSLOG_ADDRESS required}
+        syslog-format: rfc5424micro
+        tag: "{{.Name}}"
+        mode: non-blocking
+        max-buffer-size: "4m"

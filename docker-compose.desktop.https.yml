@@ -1,0 +1,6 @@
+# Optional port publishing only. Configure an HTTPS site and certificate in
+# SafeLine first. This file does not create or obtain certificates.
+services:
+  tengine:
+    ports:
+      - "127.0.0.1:443:443"

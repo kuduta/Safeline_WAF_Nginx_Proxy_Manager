@@ -1,0 +1,35 @@
+# Optional stdout/stderr forwarding; file-based access/WAF logs need a collector.
+x-syslog: &syslog
+  driver: syslog
+  options: !override
+    syslog-address: ${SYSLOG_ADDRESS:?Set SYSLOG_ADDRESS, for example tcp://ip syslog:514}
+    syslog-format: rfc5424micro
+    tag: "{{.Name}}"
+    mode: non-blocking
+    max-buffer-size: "4m"
+services:
+  postgres:
+    logging: *syslog
+  mgt:
+    logging: *syslog
+  detect:
+    logging: *syslog
+  tengine:
+    logging: *syslog
+  luigi:
+    logging: *syslog
+  fvm:
+    logging: *syslog
+  chaos:
+    logging: *syslog
+  npm-app:
+    logging: *syslog
+  npm-db:
+    logging: *syslog
+
+
+  test-site:
+    logging: *syslog
+  test-route-init:
+    logging: *syslog
+
