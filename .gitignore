@@ -1,0 +1,7 @@
+.env
+.env.*
+!.env.example
+safeline/
+npm/
+backups/
+docker-compose.original.yml
