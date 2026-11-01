@@ -88,6 +88,8 @@ services:
         condition: service_healthy
       fvm:
         condition: service_started
+      chaos:
+        condition: service_started
     networks:
       safeline-ce:
         ipv4_address: ${SUBNET_PREFIX}.4
@@ -190,7 +192,7 @@ services:
         ipv4_address: ${SUBNET_PREFIX}.8
   chaos:
     depends_on:
-      mgt:
+      postgres:
         condition: service_healthy
     container_name: safeline-chaos
     restart: unless-stopped
